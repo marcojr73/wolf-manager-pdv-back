@@ -1,0 +1,67 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model business {
+  id                        Int                 @id @default(autoincrement())
+  email                     String              @unique
+  businessName              String
+  cnpj                      String
+  password                  String
+  createdAt                 DateTime
+  products                  products[]
+  clients                   clients[]
+  sales                     sales[]
+}
+
+model products {
+  id                        Int                 @id @default(autoincrement())
+  nameProduct               String              
+  description               String?              
+  picture                   String              @default("https://w7.pngwing.com/pngs/809/244/png-transparent-computer-icons-new-items-text-rectangle-share-icon-thumbnail.png")
+  provider                  String
+  brand                     String?
+  code                      Int?
+  codeBar                   Int
+  stock                     Int
+  unitMeasurement           String
+  costPrice                 Int
+  salePrice                 Int
+  validate                  Int?
+  icms                      Int
+  businessId                Int
+  business                  business             @relation(fields: [businessId], references: [id])
+  createdAt                 Int  
+}
+
+model clients {
+  id                        Int                 @id @default(autoincrement())
+  name                      String              
+  allPurchases              Int              
+  debit                     Int
+  businessId                Int
+  business                  business             @relation(fields: [businessId], references: [id])
+  createdAt                 Int  
+  sales                     sales[]
+}
+
+
+model sales {
+  id                        Int                 @id @default(autoincrement())
+  clientId                  Int              
+  clients                   clients             @relation(fields: [clientId], references: [id])
+  costPrice                 Int
+  paymentTime               String
+  paymentMethod             String
+  businessId                Int
+  business                  business             @relation(fields: [businessId], references: [id])
+  createdAt                 DateTime
+}
