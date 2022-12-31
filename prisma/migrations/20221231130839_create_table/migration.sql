@@ -5,7 +5,7 @@ CREATE TABLE "business" (
     "businessName" TEXT NOT NULL,
     "cnpj" TEXT NOT NULL,
     "password" TEXT NOT NULL,
-    "createdAt" TIMESTAMP(3) NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "business_pkey" PRIMARY KEY ("id")
 );
@@ -27,7 +27,7 @@ CREATE TABLE "products" (
     "validate" INTEGER,
     "icms" INTEGER NOT NULL,
     "businessId" INTEGER NOT NULL,
-    "createdAt" INTEGER NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "products_pkey" PRIMARY KEY ("id")
 );
@@ -39,7 +39,7 @@ CREATE TABLE "clients" (
     "allPurchases" INTEGER NOT NULL,
     "debit" INTEGER NOT NULL,
     "businessId" INTEGER NOT NULL,
-    "createdAt" INTEGER NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "clients_pkey" PRIMARY KEY ("id")
 );
@@ -52,7 +52,7 @@ CREATE TABLE "sales" (
     "paymentTime" TEXT NOT NULL,
     "paymentMethod" TEXT NOT NULL,
     "businessId" INTEGER NOT NULL,
-    "createdAt" TIMESTAMP(3) NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "sales_pkey" PRIMARY KEY ("id")
 );

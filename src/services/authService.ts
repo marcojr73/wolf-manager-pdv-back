@@ -1,5 +1,9 @@
+import bcrypt from "bcrypt"
+
 import errors from "../errors/index.js"
+import { Tbusiness } from "../interfaces/index.js"
 import userRepository from "../repositories/userRepository.js"
+
 
 async function businessAlreadyExist(email: string, cnpj: string){
     const emailInUse = await userRepository.findBusinessByEmail(email) 
@@ -8,6 +12,16 @@ async function businessAlreadyExist(email: string, cnpj: string){
     if(cnpjInUse) errors.conflict("This cnpj already in use")
 }
 
+async function encryptPassword(password: string){
+    return bcrypt.hashSync(password, 10)
+}
+
+async function registerNewBusiness(data: Tbusiness){
+    await userRepository.registerBusiness(data)
+}
+
 export default {
-    businessAlreadyExist
+    businessAlreadyExist,
+    encryptPassword,
+    registerNewBusiness
 }

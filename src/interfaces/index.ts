@@ -5,6 +5,13 @@ interface TsignUp {
     password: string,
 }
 
+interface Tbusiness {
+    email: string,
+    businessName: string,
+    cnpj: string,
+    passCrypt: string,
+}
+
 interface TsignIn {
     email: string,
     password: string,
@@ -12,5 +19,6 @@ interface TsignIn {
 
 export {
     TsignUp,
+    Tbusiness,
     TsignIn
 }

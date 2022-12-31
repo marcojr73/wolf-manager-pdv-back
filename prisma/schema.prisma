@@ -16,7 +16,7 @@ model business {
   businessName              String
   cnpj                      String
   password                  String
-  createdAt                 DateTime
+  createdAt                 DateTime            @default(now())
   products                  products[]
   clients                   clients[]
   sales                     sales[]
@@ -38,8 +38,8 @@ model products {
   validate                  Int?
   icms                      Int
   businessId                Int
-  business                  business             @relation(fields: [businessId], references: [id])
-  createdAt                 Int  
+  business                  business            @relation(fields: [businessId], references: [id])
+  createdAt                 DateTime            @default(now())
 }
 
 model clients {
@@ -49,7 +49,7 @@ model clients {
   debit                     Int
   businessId                Int
   business                  business             @relation(fields: [businessId], references: [id])
-  createdAt                 Int  
+  createdAt                 DateTime             @default(now())  
   sales                     sales[]
 }
 
@@ -63,5 +63,5 @@ model sales {
   paymentMethod             String
   businessId                Int
   business                  business             @relation(fields: [businessId], references: [id])
-  createdAt                 DateTime
+  createdAt                 DateTime             @default(now())
 }
