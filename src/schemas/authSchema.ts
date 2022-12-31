@@ -1,6 +1,6 @@
 import joi from "joi"
 
-const emailRegex = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.([a-z]+)?$/i
+const emailRegex = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i
 const pictureRegex = /(https?:\/\/.*\.(?:png|jpg|gif|jpeg))/i
 const cnpjRegex = /^\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}$/
 
@@ -13,7 +13,7 @@ const schemaSignUp = joi.object({
 
 const schemaSignIn = joi.object({
     email: joi.string().email().pattern(emailRegex).required(),
-    password: joi.string().min(4).required(),
+    password: joi.string().min(8).required(),
 })
 
 export default {
