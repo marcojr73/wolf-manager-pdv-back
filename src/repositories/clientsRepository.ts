@@ -6,6 +6,14 @@ async function findClientByName(name: string, businessId: number) {
     })
 }
 
+async function newClientOfBusiness(name: string, businessId: number){
+    console.log(businessId)
+    await prisma.clients.create({
+        data: {name, businessId}
+    })
+}
+
 export default {
-    findClientByName
+    findClientByName,
+    newClientOfBusiness
 }

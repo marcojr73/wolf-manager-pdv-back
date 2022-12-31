@@ -6,6 +6,11 @@ async function isClientAlreadyRegister(name: string, businessId: number){
     if(isClient) errors.conflict("Client already register")
 }
 
+async function newClient(name: string, businessId: number) {
+    await clientsRepository.newClientOfBusiness(name, businessId)
+}
+
 export default {
-    isClientAlreadyRegister
+    isClientAlreadyRegister,
+    newClient
 }
