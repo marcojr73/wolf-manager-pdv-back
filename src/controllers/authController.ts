@@ -1,5 +1,5 @@
 import { Request, Response } from "express"
-import { TsignUp } from "../interfaces"
+import { TsignIn, TsignUp } from "../interfaces"
 import authService from "../services/authService.js"
 
 async function signUp(req: Request, res: Response){
@@ -11,6 +11,9 @@ async function signUp(req: Request, res: Response){
 }
 
 async function signIn(req: Request, res: Response){
+    const {email, password} : TsignIn = req.body
+    const passCrypt = await authService.isBusinessRegister(email)
+    authService.verifyPasswordIsCorrect(password, passCrypt)
     res.status(201).send("sign-in")
 }
 

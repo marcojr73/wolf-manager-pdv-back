@@ -20,8 +20,21 @@ async function registerNewBusiness(data: Tbusiness){
     await userRepository.registerBusiness(data)
 }
 
+async function isBusinessRegister(email: string){
+    const business = await userRepository.findBusinessByEmail(email) 
+    if(!business) errors.conflict("Not register business for this email")
+    return business.password
+}
+
+function verifyPasswordIsCorrect(password: string, passCrypt: string){
+    const ans = bcrypt.compareSync(password, passCrypt)
+    if(!ans) throw errors.unprocessableEntity("this password is incorrect")
+}
+
 export default {
     businessAlreadyExist,
     encryptPassword,
-    registerNewBusiness
+    registerNewBusiness,
+    isBusinessRegister,
+    verifyPasswordIsCorrect
 }
