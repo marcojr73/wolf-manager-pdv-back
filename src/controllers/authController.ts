@@ -12,9 +12,10 @@ async function signUp(req: Request, res: Response){
 
 async function signIn(req: Request, res: Response){
     const {email, password} : TsignIn = req.body
-    const passCrypt = await authService.isBusinessRegister(email)
-    authService.verifyPasswordIsCorrect(password, passCrypt)
-    res.status(201).send("sign-in")
+    const business = await authService.isBusinessRegister(email)
+    authService.verifyPasswordIsCorrect(password, business.password)
+    const token = authService.generateToken(business.id)
+    res.status(201).send(token)
 }
 
 export default {

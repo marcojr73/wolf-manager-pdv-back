@@ -1,4 +1,5 @@
 import bcrypt from "bcrypt"
+import Jwt from "jsonwebtoken"
 
 import errors from "../errors/index.js"
 import { Tbusiness } from "../interfaces/index.js"
@@ -23,12 +24,17 @@ async function registerNewBusiness(data: Tbusiness){
 async function isBusinessRegister(email: string){
     const business = await userRepository.findBusinessByEmail(email) 
     if(!business) errors.conflict("Not register business for this email")
-    return business.password
+    return business
 }
 
 function verifyPasswordIsCorrect(password: string, passCrypt: string){
     const ans = bcrypt.compareSync(password, passCrypt)
-    if(!ans) throw errors.unprocessableEntity("this password is incorrect")
+    if(!ans) throw errors.unprocessableEntity("This password is incorrect")
+}
+
+function generateToken(userId: number){
+    const {KEYJWT} = process.env
+    return Jwt.sign({ userId }, KEYJWT, { expiresIn: "1d"})
 }
 
 export default {
@@ -36,5 +42,6 @@ export default {
     encryptPassword,
     registerNewBusiness,
     isBusinessRegister,
-    verifyPasswordIsCorrect
+    verifyPasswordIsCorrect,
+    generateToken
 }
