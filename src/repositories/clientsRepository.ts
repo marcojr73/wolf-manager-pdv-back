@@ -7,13 +7,25 @@ async function findClientByName(name: string, businessId: number) {
 }
 
 async function newClientOfBusiness(name: string, businessId: number){
-    console.log(businessId)
     await prisma.clients.create({
         data: {name, businessId}
     })
 }
 
+async function getClientsByBusinessId(businessId: number){
+    return {
+        businessName: await prisma.business.findFirst({
+            select: {businessName: true},
+            where: {id: businessId}
+        }),
+        clients: await prisma.clients.findMany({
+            where: {businessId},
+        }) 
+    } 
+}
+
 export default {
     findClientByName,
-    newClientOfBusiness
+    newClientOfBusiness,
+    getClientsByBusinessId
 }

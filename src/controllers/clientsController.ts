@@ -10,6 +10,13 @@ async function registerNewClient(req: Request, res: Response){
     res.status(201).send("created")
 }
 
+async function getListClients(req: Request, res: Response) {
+    const businessId: number = res.locals.businessId
+    const listClients = await clientsService.getClients(businessId)
+    res.status(200).send(listClients)
+}
+
 export default {
-    registerNewClient
+    registerNewClient,
+    getListClients
 }

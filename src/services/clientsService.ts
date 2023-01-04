@@ -10,7 +10,12 @@ async function newClient(name: string, businessId: number) {
     await clientsRepository.newClientOfBusiness(name, businessId)
 }
 
+async function getClients(businessId: number){
+    return clientsRepository.getClientsByBusinessId(businessId)
+}
+
 export default {
     isClientAlreadyRegister,
-    newClient
+    newClient,
+    getClients
 }
