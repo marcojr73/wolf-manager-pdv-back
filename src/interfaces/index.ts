@@ -17,8 +17,16 @@ interface TsignIn {
     password: string,
 }
 
+interface TnewClient {
+    name: string, 
+    street: string, 
+    number: number, 
+    phone: string
+}
+
 export {
     TsignUp,
     Tbusiness,
-    TsignIn
+    TsignIn,
+    TnewClient
 }
