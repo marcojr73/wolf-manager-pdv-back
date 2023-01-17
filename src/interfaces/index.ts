@@ -20,7 +20,7 @@ interface TsignIn {
 interface TnewClient {
     name: string, 
     street: string, 
-    number: number, 
+    number: string, 
     phone: string
 }
 

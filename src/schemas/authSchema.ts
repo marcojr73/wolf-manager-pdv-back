@@ -19,7 +19,7 @@ const schemaSignIn = joi.object({
 const schemaClients = joi.object({
     name: joi.string().min(3).required(),
     street: joi.string().min(3).required(),
-    number: joi.number().required(),
+    number: joi.string().required(),
     phone: joi.string().required()
 })
 

@@ -2,12 +2,13 @@ import errors from "../errors/index.js"
 import businessRepository from "../repositories/businessRepository.js"
 import clientsRepository from "../repositories/clientsRepository.js"
 
-async function isClientAlreadyRegister(data: {name: string, street: string, businessId: number}){
-    const isClient = await clientsRepository.findClientByData(data)
+async function isClientAlreadyRegister(name: string, street: string, number: string, businessId: number){
+    const isClient = await clientsRepository.findClientByData(name, businessId, street, number)
+    console.log(isClient)
     if(isClient) errors.conflict("Client already register")
 }
 
-async function newClient(name: string, street: string, number: number, phone: string, businessId: number) {
+async function newClient(name: string, street: string, number: string, phone: string, businessId: number) {
     await clientsRepository.newClientOfBusiness(name, street, number, phone, businessId)
 }
 

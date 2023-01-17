@@ -1,23 +1,16 @@
 import { prisma } from "../config/dataBase.js"
 
-async function findClientByName(name: string, businessId: number) {
+async function findClientByData(name: string, businessId: number, street: string, number: string) {
     return await prisma.clients.findFirst({
-        where: { businessId, name }
-    })
-}
-
-async function findClientByData({ name, street, businessId }: { name: string, street: string, businessId: number }) {
-    return await prisma.adress.findFirst({
-        where: { street },
-        include: {
-            clients: {
-                where: { name, businessId }
+        where: {
+            businessId, name, adress: {
+                AND: { street, number }
             }
         }
     })
 }
 
-async function newClientOfBusiness(name: string, street: string, number: number, phone: string, businessId: number) {
+async function newClientOfBusiness(name: string, street: string, number: string, phone: string, businessId: number) {
     const adressId = await prisma.adress.create({
         data: { street, number }
     })
@@ -29,7 +22,7 @@ async function newClientOfBusiness(name: string, street: string, number: number,
 async function getClientsByBusinessId(businessId: number) {
     return await prisma.clients.findMany({
         select: {
-            name: true, phone: true, debit: true, adress: {
+            id: true, name: true, phone: true, debit: true, adress: {
                 select: {
                     street: true,
                     number: true
@@ -41,9 +34,7 @@ async function getClientsByBusinessId(businessId: number) {
 }
 
 export default {
-    findClientByName,
+    findClientByData,
     newClientOfBusiness,
     getClientsByBusinessId,
-    findClientByData
-
 }
