@@ -45,12 +45,22 @@ model products {
 model clients {
   id                        Int                 @id @default(autoincrement())
   name                      String              
-  allPurchases              Int              
-  debit                     Int
+  adressId                  Int
+  phone                     String
+  debit                     Int                 @default(0)
   businessId                Int
   business                  business             @relation(fields: [businessId], references: [id])
+  adress                    adress              @relation(fields: [adressId], references: [id])
   createdAt                 DateTime             @default(now())  
   sales                     sales[]
+}
+
+model adress {
+  id                        Int                 @id @default(autoincrement())
+  street                    String
+  number                    String
+  clients                   clients[]
+  createdAt                 DateTime             @default(now())
 }
 
 

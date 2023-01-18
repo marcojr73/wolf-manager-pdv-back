@@ -16,7 +16,15 @@ const schemaSignIn = joi.object({
     password: joi.string().min(8).required(),
 })
 
+const schemaClients = joi.object({
+    name: joi.string().min(3).required(),
+    street: joi.string().min(3).required(),
+    number: joi.string().required(),
+    phone: joi.string().required()
+})
+
 export default {
     schemaSignUp,
-    schemaSignIn
+    schemaSignIn,
+    schemaClients
 } 

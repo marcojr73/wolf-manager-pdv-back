@@ -7,7 +7,7 @@ async function signUp(req: Request, res: Response){
     await authService.businessAlreadyExist(email, cnpj)
     const passCrypt = await authService.encryptPassword(password) 
     await authService.registerNewBusiness({email, businessName, cnpj, passCrypt})
-    res.status(201).send("sign-up")
+    res.status(201).send("Created")
 }
 
 async function signIn(req: Request, res: Response){
