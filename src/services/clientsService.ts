@@ -4,7 +4,6 @@ import clientsRepository from "../repositories/clientsRepository.js"
 
 async function isClientAlreadyRegister(name: string, street: string, number: string, businessId: number){
     const isClient = await clientsRepository.findClientByData(name, businessId, street, number)
-    console.log(isClient)
     if(isClient) errors.conflict("Client already register")
 }
 
