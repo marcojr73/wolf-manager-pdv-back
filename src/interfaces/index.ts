@@ -38,6 +38,7 @@ interface TnewProduct {
     salePrice: number,
     validate: number | null,
     icms:  number
+    businessId: number | null
 }
 
 export {
