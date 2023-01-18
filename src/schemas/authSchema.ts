@@ -23,8 +23,25 @@ const schemaClients = joi.object({
     phone: joi.string().required()
 })
 
+const schemaProducts = joi.object({
+    nameProduct: joi.string().min(3).required(),              
+    description: joi.string(),              
+    picture:  joi.string(),
+    provider:  joi.string().min(3).required(),
+    brand:  joi.string(),
+    code:  joi.number().min(1).required(),
+    codeBar:  joi.string().required(),
+    stock: joi.number().required(),
+    unitMeasurement: joi.string().required(),
+    costPrice: joi.number().min(0).required(),
+    salePrice: joi.number().min(0).required(),
+    validate: joi.number(),
+    icms:  joi.number().required()
+})
+
 export default {
     schemaSignUp,
     schemaSignIn,
-    schemaClients
+    schemaClients,
+    schemaProducts
 } 
