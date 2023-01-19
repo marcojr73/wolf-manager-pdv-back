@@ -24,18 +24,18 @@ const schemaClients = joi.object({
 })
 
 const schemaProducts = joi.object({
-    nameProduct: joi.string().min(3).required(),              
-    description: joi.string(),              
-    picture:  joi.string(),
-    provider:  joi.string().min(3).required(),
-    brand:  joi.string(),
-    code:  joi.number().min(1).required(),
-    codeBar:  joi.string().required(),
+    nameProduct: joi.string().min(0).required(),              
+    description: joi.string().min(0),              
+    picture: joi.string().min(0),
+    provider: joi.string().min(0).required(),
+    brand: joi.string().min(0),
+    code: joi.number().min(0).required(),
+    codeBar: joi.string().required(),
     stock: joi.number().required(),
     unitMeasurement: joi.string().required(),
     costPrice: joi.number().min(0).required(),
     salePrice: joi.number().min(0).required(),
-    validate: joi.number(),
+    validate: joi.number().min(0),
     icms:  joi.number().required()
 })
 

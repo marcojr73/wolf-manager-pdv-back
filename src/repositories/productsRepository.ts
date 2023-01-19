@@ -13,7 +13,14 @@ async function newProductDb(data: TnewProduct) {
     })
 }
 
+async function getProductsByBusinessId(businessId: number){
+    return await prisma.products.findMany({
+        where: {businessId}
+    })
+}
+
 export default {
     getProductByCode,
-    newProductDb
+    newProductDb,
+    getProductsByBusinessId
 }

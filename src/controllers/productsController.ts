@@ -11,6 +11,14 @@ async function registerNewProduct(req: Request, res: Response){
     res.status(201).send("new product")
 }
 
+async function getAllproducts(req: Request, res: Response){
+    const businessId: number = res.locals.businessId
+
+    const listProducts = await productsService.getProducts(businessId)
+    res.status(201).send(listProducts)
+}
+
 export default {
     registerNewProduct,
+    getAllproducts
 }
