@@ -5,7 +5,7 @@ import utils from "../utils/index.js"
 
 const clientsRouter= Router()
 
-clientsRouter.post("/clients/register", utils.validateTokenAndGetAccount, validateDataClient, clientsController.registerNewClient)
+clientsRouter.post("/clients/register", validateDataClient, utils.validateTokenAndGetAccount, clientsController.registerNewClient)
 clientsRouter.get("/clients", utils.validateTokenAndGetAccount, clientsController.getListClients)
 
 export default clientsRouter

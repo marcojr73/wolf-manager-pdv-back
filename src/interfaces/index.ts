@@ -24,9 +24,27 @@ interface TnewClient {
     phone: string
 }
 
+interface TnewProduct {
+    nameProduct: string,              
+    description: string | null,              
+    picture:  string | null,
+    provider:  string,
+    brand:  string | null,
+    code:  number,
+    codeBar:  string
+    stock: number,
+    unitMeasurement: string,
+    costPrice: number,
+    salePrice: number,
+    validate: number | null,
+    icms:  number
+    businessId: number | null
+}
+
 export {
     TsignUp,
     Tbusiness,
     TsignIn,
-    TnewClient
+    TnewClient,
+    TnewProduct
 }

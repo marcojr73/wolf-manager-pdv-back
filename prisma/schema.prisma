@@ -30,7 +30,7 @@ model products {
   provider                  String
   brand                     String?
   code                      Int?
-  codeBar                   Int
+  codeBar                   String
   stock                     Int
   unitMeasurement           String
   costPrice                 Int
