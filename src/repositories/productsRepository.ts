@@ -15,7 +15,22 @@ async function newProductDb(data: TnewProduct) {
 
 async function getProductsByBusinessId(businessId: number){
     return await prisma.products.findMany({
-        where: {businessId}
+        where: {businessId},
+        select : {
+            nameProduct: true,              
+            description: true,
+            picture: true,
+            provider: true,
+            brand: true,
+            code: true,
+            codeBar: true,
+            stock: true,
+            unitMeasurement: true,
+            costPrice: true,
+            salePrice: true,
+            validate: true,
+            icms: true,
+        }
     })
 }
 
