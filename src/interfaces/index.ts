@@ -41,10 +41,16 @@ interface TnewProduct {
     businessId: number | null
 }
 
+type TlastMonthYear = {
+    month: string;
+    year: string;
+}[]
+
 export {
     TsignUp,
     Tbusiness,
     TsignIn,
     TnewClient,
-    TnewProduct
+    TnewProduct,
+    TlastMonthYear
 }
