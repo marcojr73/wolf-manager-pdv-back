@@ -49,9 +49,9 @@ model clients {
   phone                     String
   debit                     Int                 @default(0)
   businessId                Int
-  business                  business             @relation(fields: [businessId], references: [id])
+  business                  business            @relation(fields: [businessId], references: [id])
   adress                    adress              @relation(fields: [adressId], references: [id])
-  createdAt                 DateTime             @default(now())  
+  createdAt                 DateTime            @default(now())  
   sales                     sales[]
 }
 
@@ -60,7 +60,7 @@ model adress {
   street                    String
   number                    String
   clients                   clients[]
-  createdAt                 DateTime             @default(now())
+  createdAt                 DateTime            @default(now())
 }
 
 
@@ -68,9 +68,7 @@ model sales {
   id                        Int                 @id @default(autoincrement())
   clientId                  Int              
   clients                   clients             @relation(fields: [clientId], references: [id])
-  costPrice                 Int
-  paymentTime               String
-  paymentMethod             String
+  price                     Int
   businessId                Int
   business                  business             @relation(fields: [businessId], references: [id])
   createdAt                 DateTime             @default(now())
